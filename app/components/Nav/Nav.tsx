@@ -21,7 +21,7 @@ export function Nav() {
           <SunMoon aria-hidden />
         </button>
         <a
-          href=""
+          href="https://github.com/Wesley-Ormsby/wizard-wizard"
           target="_blank"
           className="svg-button"
           aria-label="View project on GitHub"
