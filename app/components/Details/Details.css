@@ -1,0 +1,50 @@
+  .detail-component {
+      flex-direction: column;
+      gap: var(--spacing-medium);
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      padding: var(--spacing-medium);
+      border-radius: var(--radius);
+      width: 500px;
+      max-width: 100%;
+      overflow: hidden;
+
+    .detail-dropdown {
+      display: flex;
+      margin-top: var(--spacing-large);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: var(--spacing-small);
+    }
+
+    summary {
+      cursor: pointer;
+      width: 100%;
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    summary svg {
+      color: var(--muted-foreground);
+    }
+
+    &[open] summary svg {
+      transform: rotate(180deg);
+    }
+
+    summary:hover {
+      text-decoration: underline;
+    }
+
+    summary::marker {
+      display: none;
+      content: "";
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+  }

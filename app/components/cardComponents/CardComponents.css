@@ -1,0 +1,114 @@
+.card-button-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spacing-small);
+}
+
+.card-button-row-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-medium);
+}
+
+.card {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-medium) var(--spacing-medium);
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+button.card {
+    &[disabled] {
+        filter: grayscale(0.5) brightness(0.5);
+    }
+    &:not([disabled]) {
+        cursor: pointer;
+    }
+    &:hover:not([disabled]) {
+        background-color: rgb(191, 191, 191);
+    }
+}
+
+.red {
+    color: red;
+}
+
+.black {
+    color: black;
+}
+
+.blue {
+    color: blue;
+}
+
+.active {
+    background-color: var(--background-tint) !important;
+    border: 1px solid var(--primary) !important;
+    color: var(--primary) !important;
+
+    .red,
+    .black,
+    .blue {
+        color: var(--primary);
+    }
+
+    svg {
+        fill: var(--primary);
+        stroke: var(--primary);
+    }
+}
+
+.active:hover {
+    border-color: var(--primary-hover) !important;
+    color: var(--primary-hover) !important;
+
+    .red,
+    .black,
+    .blue {
+        color: var(--primary-hover);
+    }
+
+    svg {
+        fill: var(--primary-hover);
+        stroke: var(--primary-hover);
+    }
+}
+
+.selected-count {
+    color: var(--muted-foreground);
+    text-align: right;
+    margin: var(--spacing-medium) 0px;
+}
+
+.danger-reminder {
+    color: var(--danger);
+    text-align: center;
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 800px) {
+    .card {
+        padding: var(--spacing-small) var(--spacing-small);
+        border-radius: 3px;
+        font-size: 12px;
+    }
+
+    .card svg {
+        max-width: 14px;
+        max-height: 14px;
+    }
+
+    .selected-count {
+        margin: var(--spacing-small) 0px;
+        font-size: 12px;
+    }
+}

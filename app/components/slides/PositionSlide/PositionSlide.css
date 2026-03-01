@@ -1,0 +1,21 @@
+.position-slide {
+    .button-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap:var(--spacing-medium);
+    }
+
+    .position-button {
+        font-weight: bold;
+        font-size: 24px;
+        padding:var(--spacing-medium) var(--spacing-medium);
+    }
+
+    p {
+        max-width: 600px;
+        text-align: center;
+        line-height: 1.5;
+        color:var(--muted-foreground);
+    }
+}

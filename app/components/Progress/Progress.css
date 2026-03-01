@@ -1,0 +1,26 @@
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    max-width: 100%;
+
+    p {
+        text-align: right;
+        color: var(--muted-foreground);
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background-color: var(--background-hover);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        display: flex;
+    }
+
+    .inner-progress {
+        background-color: var(--primary);
+        transition: 0.2s;
+        border-radius: var(--radius);
+    }
+}

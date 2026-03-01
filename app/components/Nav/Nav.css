@@ -1,0 +1,58 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-medium);
+    z-index: 1;
+    top: 0;
+    position: sticky;
+    background-color: var(--background);
+    border-bottom: 1px solid var(--border);
+
+    svg {
+        fill: var(--foreground);
+        max-width: 24px;
+        max-height: 24px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: var(--spacing-small);
+    }
+
+    a,
+    button {
+        background-color: var(--background);
+        border: 1px solid var(--background);
+        outline: 1px solid var(--background);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--radius);
+        cursor: pointer;
+        gap: var(--spacing-small);
+        text-decoration: none;
+        color: var(--foreground);
+        padding: var(--spacing-medium) var(--spacing-medium);
+        transition: 0.15s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .svg-button {
+        padding: var(--spacing-medium) var(--spacing-medium);
+    }
+
+    .svg-button svg {
+        max-width: 22px;
+        max-height: 22px;
+    }
+
+    a:hover,
+    button:hover {
+        background-color: var(--background-hover);
+    }
+
+    a:focus,
+    button:focus {
+        outline: 1px solid var(--border);
+    }
+}
