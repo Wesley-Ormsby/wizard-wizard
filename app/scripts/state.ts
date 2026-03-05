@@ -24,6 +24,14 @@ export const defaultState = {
   hand: [],
 };
 
+export const defaultTrumpChooserState: GlobalState = {
+  page: 2,
+  players: null,
+  position: 1,
+  trump: {rank:"W", suit:"H"},
+  hand: [],
+};
+
 export const GlobalStateContext = createContext<GlobalStateContextValue>({
   state: defaultState,
   setState: () => {},

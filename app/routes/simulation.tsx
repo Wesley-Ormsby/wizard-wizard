@@ -1,14 +1,14 @@
 import { validateSearchParams } from "~/scripts/lib/searchParams";
 import type { Route } from "./+types/home";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import type {
   SimulationResult as SimulationResultType,
-  workerMessage,
+  WorkerMessage,
 } from "~/scripts/types";
 import { useEffect, useState } from "react";
-import { SimulationError } from "~/components/simulationPageStates/SimulationError";
-import { SimulationLoading } from "~/components/simulationPageStates/SimulationLoading";
-import { SimulationResult } from "~/components/simulationPageStates/SimulationResult";
+import { SimulationError } from "~/components/simulationResultComponents/SimulationError";
+import { SimulationLoading } from "~/components/simulationResultComponents/SimulationLoading";
+import { SimulationResult } from "~/components/simulationResultComponents/SimulationResult";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -27,8 +27,12 @@ export default function SimulationPage() {
   );
   const [progress, setProgress] = useState(0);
 
+  const [simCounter, setSimCounter] = useState(0);
+  const reloadSim = () => setSimCounter(prev=>prev+1)
+
   useEffect(() => {
     if (!searchParamData.success) return;
+    setProgress(0)
     setSimResults(null);
     let worker = null;
     if (window.Worker) {
@@ -38,7 +42,7 @@ export default function SimulationPage() {
           type: "module",
         },
       );
-      worker.onmessage = (e: MessageEvent<workerMessage>) => {
+      worker.onmessage = (e: MessageEvent<WorkerMessage>) => {
         if (e.data.type == "progress") {
           setProgress(e.data.progress);
         } else {
@@ -56,10 +60,23 @@ export default function SimulationPage() {
     return () => {
       if (worker) worker.terminate();
     };
-  }, [searchParams]);
+  }, [searchParams, simCounter]);
+
+  const navigate = useNavigate();
+  function recoverErrorState() {
+    navigate("/", {
+      state: {
+        page: searchParamData.recoverablePage,
+        players: searchParamData.players,
+        position: searchParamData.position,
+        trump: searchParamData.trump,
+        hand: searchParamData.hand,
+      },
+    });
+  }
 
   if (!searchParamData.success)
-    return <SimulationError searchParamData={searchParamData} />;
+    return <SimulationError searchParamData={searchParamData} recoverErrorState={recoverErrorState}/>;
 
   if (simResults === null) return <SimulationLoading progress={progress} />;
 
@@ -67,6 +84,7 @@ export default function SimulationPage() {
     <SimulationResult
       simResults={simResults}
       searchParamData={searchParamData}
+      reloadSim={reloadSim}
     />
   );
 }

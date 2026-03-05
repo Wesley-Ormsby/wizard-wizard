@@ -3,7 +3,13 @@ import { HandSelector } from "~/components/cardComponents/HandSelector";
 import { openSimulation } from "~/scripts/lib/utils";
 import { GlobalStateContext } from "~/scripts/state";
 
-export function HandSlide() {
+export function HandSlide({
+  runButtonText,
+  runFunction,
+}: {
+  runButtonText: string;
+  runFunction: () => void;
+}) {
   const { state, setState } = useContext(GlobalStateContext);
   let maxHandSize = 60 / (state.players as number);
   if (state.trump) maxHandSize -= 1;
@@ -32,9 +38,9 @@ export function HandSlide() {
         <button
           className="default"
           disabled={disableRunSimulationButton}
-          onClick={() => openSimulation(state)}
+          onClick={runFunction}
         >
-          Run Simulation
+          {runButtonText}
         </button>
       </div>
     </section>

@@ -13,6 +13,7 @@ import { TrumpSlide } from "~/components/slides/TrumpSlide/TrumpSlide";
 import { HandSlide } from "~/components/slides/HandSlide/HandSlide";
 import { ArrowLeft } from "lucide-react";
 import { useLocation } from "react-router";
+import { openSimulation } from "~/scripts/lib/utils";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -69,6 +70,6 @@ function SlideBody() {
     case 4:
       return <TrumpSlide />;
     case 5:
-      return <HandSlide />;
+      return <HandSlide runButtonText="Run Simulation" runFunction={() => openSimulation(state)}/>;
   }
 }

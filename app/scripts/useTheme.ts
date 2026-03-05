@@ -6,6 +6,18 @@ export function useTheme() {
   useEffect(() => {
     const stored = localStorage.getItem("theme");
     if (stored === "light") setTheme("light");
+
+    const widowTheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleThemeChange = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        setTheme("dark");
+      } else {
+        setTheme("light");
+      }
+    };
+    widowTheme.addEventListener("change", handleThemeChange);
+
+    return () => widowTheme.removeEventListener("change", handleThemeChange);
   }, []);
 
   useEffect(() => {
@@ -26,7 +38,6 @@ export function useTheme() {
 
   return {
     theme,
-    toggle: () =>
-      setTheme(t => (t === "dark" ? "light" : "dark")),
+    toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")),
   };
 }

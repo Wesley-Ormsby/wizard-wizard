@@ -15,10 +15,11 @@ export function HeroSlide() {
       </p>
       <div className="button-flex">
         <button className="default" onClick={() => setState(nextPageState())}>
-          Get Started
+         Bid Calculator
         </button>
         <button className="outline" onClick={()=>openSimulation(generateRandomState())}>Random Simulation</button>
-      </div>
+        <a className="default" href="/trump-chooser">Trump Chooser</a>
+      </div>      
     </section>
   );
 }

@@ -1,5 +1,5 @@
 import type { GlobalState } from "../state";
-import type { Card, ExtendedRank, Suit } from "../types";
+import type { Card, ExtendedRank, SimulationResult, Suit } from "../types";
 
 const suitToNameMap = {
   D: "Diamonds",
@@ -70,6 +70,22 @@ export function openSimulation(state: GlobalState) {
   window.open(simulationHref, "_self");
 }
 
+export function openTrumpChooser(state: GlobalState) {
+  const encodedHand = encodeURIComponent(state.hand.map(cardToCode).join(""));
+  const simulationHref = `/trump-chooser/simulation?players=${state.players}&hand=${encodedHand}`;
+  window.open(simulationHref, "_self");
+}
+
 export function isSameCard(a:Card, b:Card) {
     return a.rank === b.rank && a.suit === b.suit;
+}
+
+export function getBestBid(simResult:SimulationResult) {
+return Object.keys(simResult.expectedPoints).reduce(
+    (max, item) =>
+      simResult.expectedPoints[max] > simResult.expectedPoints[item]
+        ? max
+        : item,
+    Object.keys(simResult.expectedPoints)[0],
+  )
 }

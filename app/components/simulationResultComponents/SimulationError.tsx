@@ -3,22 +3,11 @@ import type { ValidateSearchParamsReturn } from "~/scripts/lib/searchParams";
 
 export function SimulationError({
   searchParamData,
+  recoverErrorState
 }: {
   searchParamData: ValidateSearchParamsReturn;
+  recoverErrorState: ()=>void;
 }) {
-  const navigate = useNavigate();
-  function recoverErrorState() {
-    navigate("/", {
-      state: {
-        page: searchParamData.recoverablePage,
-        players: searchParamData.players,
-        position: searchParamData.position,
-        trump: searchParamData.trump,
-        hand: searchParamData.hand,
-      },
-    });
-  }
-
   return (
     <section className="slide simulation-page">
       <h1>Something went wrong</h1>

@@ -16,7 +16,7 @@ export function HandSelector({maxHandSize}:{maxHandSize:number}) {
     (card: Card) => {
       const isInHand = handSet.has(`${card.rank}${card.suit}`);
       if (isInHand || state.hand.length < maxHandSize)
-        setState(toggleCardInHandState(card, isInHand, true));
+        setState(toggleCardInHandState(card, isInHand, false));
     },
     [handSet],
   );

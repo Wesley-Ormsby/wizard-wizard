@@ -28,7 +28,7 @@ export interface Card {
   rank: ExtendedRank;
 }
 
-export type workerMessage =
+export type WorkerMessage =
   | { type: "progress"; progress: number }
   | { type: "result"; result: SimulationResult };
 

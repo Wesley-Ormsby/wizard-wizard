@@ -117,7 +117,7 @@ export default function App() {
 }
 
 export function meta() {
-  return [{ title: "404 — Wizard Wizard" }];
+  return [{ title: "Wizard Wizard — 404" }];
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

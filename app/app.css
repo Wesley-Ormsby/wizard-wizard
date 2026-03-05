@@ -157,6 +157,12 @@ button.outline:focus {
   }
 }
 
+/* For a selected outline button */
+.outline.selected {
+  background-color: var(--background-tint);
+  border-color: var(--primary);
+}
+
 
 /* Simulation Page Styles */
 .simulation-page {
@@ -180,6 +186,8 @@ button.outline:focus {
 
   .button-group {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: var(--spacing-medium);
     margin: 10px 0px;
   }
